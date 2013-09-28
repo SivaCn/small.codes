@@ -10,8 +10,7 @@ traversals (inorder, preorder and postorder)
 __all__ = ['BST']
 
 __author__ = "Siva Cn (cnsiva.in@gmail.com)"
-__date__ = "28-SEP-2013"
-__copyright__ = "Copyright (c) 2013 Siva Cn"
+__copyright__ = "Copyright (c) 2013 www.cnsiva.com"
 
 class Node:
     """Referential Structure used to create new nodes"""
