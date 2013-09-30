@@ -1,4 +1,4 @@
 Sample-Codes
 ============
 
-Sample Code describes all my coding Styles, code architecture and more
+Sample Code describes all my coding Style, code architecture and more
