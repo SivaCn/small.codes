@@ -1,3 +1,10 @@
+#
+#
+# This Program was Copied from internet.
+#
+#
+
+
 class Logger :
     ''' Handles logging of debugging and error messages. '''
 
