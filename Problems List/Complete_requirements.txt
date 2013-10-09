@@ -1,3 +1,12 @@
+#
+#
+# Source: Google.com
+#
+#
+#
+
+
+
 While I haven't interviewed precisely for Python, I've been
 on the other (interviewing) end and can offer a few of the
 sorts of things I ask.  I don't expect perfect answers to
