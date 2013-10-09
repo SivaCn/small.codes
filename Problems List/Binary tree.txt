@@ -1,0 +1,26 @@
+##Given a Tree, write a function boolean isBST(TreeNode node) that returns if the tree is a BST or not.
+##e.g.
+##case 1:
+##              5
+##             /  \
+##            4    9
+##           /    / \
+##          1    7   12
+##          is a BST
+##          
+##case 2:       17
+##             /  \
+##            14    19
+##           /     / \
+##          21    7   12
+##          is not a BST
+##
+##class TreeNode(object):
+##    def __init__(self):
+##        self.data = 0
+##        self.left = TreeNode()
+##        self.right = TreeNode()
+##      
+##"""
+##input = {5: [{4:[1]},{9:[7, 12]}]}
+##"""
