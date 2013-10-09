@@ -21,8 +21,6 @@
 ##        self.left = TreeNode()
 ##        self.right = TreeNode()
 ##      
-##"""
-##input = {5: [{4:[1]},{9:[7, 12]}]}
-##"""
+
 
 
