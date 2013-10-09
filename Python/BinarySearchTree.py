@@ -10,6 +10,7 @@ traversals (inorder, preorder and postorder)
 __all__ = ['BST']
 
 __author__ = "Siva Cn (cnsiva.in@gmail.com)"
+__website__ = "http://www.cnsiva.com"
 __copyright__ = "Copyright (c) 2013 www.cnsiva.com"
 
 class Node:
