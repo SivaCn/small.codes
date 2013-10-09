@@ -1,0 +1,117 @@
+While I haven't interviewed precisely for Python, I've been
+on the other (interviewing) end and can offer a few of the
+sorts of things I ask.  I don't expect perfect answers to
+all of them, but they show me a range of what the
+interviewee knows.  I try and give a scattershot of
+questions from the following areas to try and narrow down
+where they fall in terms of pythonability, and then grill
+more deeply around the edges that I find.
+
+Basic Python:
+=============
+- do they know a tuple/list/dict when they see it?
+
+- when to use list vs. tuple vs. dict. vs. set
+
+- can they use list comprehensions (and know when not to
+   abuse them? :)
+
+- can they use tuple unpacking for assignment?
+
+- string building...do they use "+=" or do they build a list
+   and use .join() to recombine them efficiently
+
+- truth-value testing questions and observations (do they
+   write "if x == True" or do they just write "if x")
+
+- basic file-processing (iterating over a file's lines)
+
+- basic understanding of exception handling
+
+Broader Basic Python:
+=====================
+- questions about the standard library ("do you know if
+   there's a standard library for doing X?", or "in which
+   library would you find [common functionality Y]?")  Most
+   of these are related to the more common libraries such as
+   os/os.path/sys/re/itertools
+
+- questions about iterators/generators
+
+- questions about map/reduce/sum/etc family of functions
+
+- questions about "special" methods (__<foo>__)
+
+More Advanced Python:
+=====================
+- can they manipulate functions as first-class objects
+   (Python makes it easy, but do they know how)
+
+- more detailed questions about the std. libraries (such as
+   datetime/email/csv/zipfile/networking/optparse/unittest)
+
+- questions about testing (unittests/doctests)
+
+- questions about docstrings vs. comments, and the "Why" of
+   them
+
+- more detailed questions about regular expressions
+
+- questions about mutability
+
+- keyword/list parameters and unpacked kwd args
+
+- questions about popular 3rd-party toolkits (BeautifulSoup,
+   pyparsing...mostly if they know about them and when to use
+   them, not so much about implementation details)
+
+- questions about monkey-patching
+
+- questions about PDB
+
+- questions about properties vs. getters/setters
+
+- questions about classmethods
+
+- questions about scope/name-resolution
+
+- use of lambda
+
+Python History:
+===============
+- decorators added in which version?
+
+- "batteries included" SQL-capible DB in which version?
+
+- the difference between "class Foo" and "class Foo(object)"
+
+- questions from "import this" about pythonic code
+
+Python Resources:
+=================
+- what do they know about various Python web frameworks
+   (knowing a few names is usually good enough, though
+   knowledge about the frameworks is a nice plus) such as
+   Django, TurboGears, Zope, etc.
+
+- what do they know about various Python GUI frameworks and
+   the pros/cons of them (tkinter, wx, pykde, etc)
+
+- where do they go with Python related questions (c.l.p,
+   google, google-groups, etc)
+
+Other Process-releated things:
+==============================
+- do they use revision control
+   (RCS/CVS/Subversion/Mercurial/Git...anything but VSS) and
+   know how to use it well
+
+- do they write automated tests for their code
+
+Touchy-feely things:
+====================
+- tabs vs. spaces, and their reasoning
+
+- reason for choosing Python
+
+- choice of editor/IDE
