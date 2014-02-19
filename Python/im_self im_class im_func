@@ -1,0 +1,58 @@
+
+On bound methods, you can use three special read-only parameters:
+
+im_func which returns the (unbound) function object
+im_self which returns the object the function is bound to (class instance)
+im_class which returns the class of im_self
+Testing around:
+
+class Test(object):
+    def foo(self):
+        pass
+
+instance = Test()
+instance.foo          # <bound method Test.foo of <__main__.Test object at 0x1>>
+instance.foo.im_func  # <function foo at 0x2>
+instance.foo.im_self  # <__main__.Test object at 0x1>
+instance.foo.im_class # <__main__.Test class at 0x3>
+
+# A few remarks
+instance.foo.im_self.__class__ == instance.foo.im_class # True
+instance.foo.__name__ == instance.foo.im_func.__name__  # True
+instance.foo.__doc__ == instance.foo.im_func.__doc__    # True
+
+# Now, note this:
+Test.foo.im_func != Test.foo # unbound method vs function
+Test.foo.im_self is None
+
+# Let's play with classmethods
+class Extend(Test):
+    @classmethod
+    def bar(cls): 
+        pass
+
+extended = Extend()
+
+# Be careful! Because it's a class method, the class is returned, not the instance
+extended.bar.im_self # <__main__.Extend class at ...>
+
+
+There is an interesting thing to note here, that gives you a hint on how the methods are being called:
+
+class Hint(object):
+    def foo(self, *args, **kwargs):
+        pass
+
+    @classmethod
+    def bar(cls, *args, **kwargs):
+        pass
+
+instance = Hint()
+
+# this will work with both class methods and instance methods:
+for name in ['foo', 'bar']:
+    method = instance.__getattribute__(name)
+    # call the method
+    method.im_func(method.im_self, 1, 2, 3, fruit='banana')
+    
+Basically, im_self attribute of a bound method changes, to allow using it as the first parameter when calling im_func
