@@ -1,0 +1,14 @@
+class Base:
+    @classmethod
+    def base_method(cls, *args):
+        print "Calling Base base_method with %s" % cls.__name__
+
+class DerivedClass(Base):
+    @classmethod
+    def base_method(cls, *args):
+        print "Calling DerivedClass base_method with %s" % cls.__name__
+        Base.base_method.im_func(cls, *args)
+        #cls.base_method(*args) # Causes Recursion Error
+        #super(DerivedClass, cls).base_method(*args)
+
+DerivedClass.base_method('eggs', 'spam')
