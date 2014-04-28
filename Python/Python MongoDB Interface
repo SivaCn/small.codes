@@ -1,0 +1,120 @@
+#! /usr/bin/python
+
+
+import random
+import pymongo
+
+
+class Mongo():
+    """."""
+    def __init__(self, server=None, port=None):
+        """."""
+        self.server = False if server is None else server.strip()
+
+        try:
+            self.port = False if port is None else int(port)
+        except ValueError:
+            raise Exception( "Expecting port as 'int', found '{0}'".format(type(port)) )
+
+        if not self.server:
+            raise Exception("Expecting mandatory argument 'server', Got None")
+
+        if not self.port:
+            raise Exception("Expecting mandatory argument 'port', Got None")
+
+        self.client = pymongo.Connection(self.server, self.port)
+
+    def __enter__(self):
+        """."""
+        print "-" * 80
+        print "MongoDB Client have been Created"
+        print "SERVER: {0}\nPORT: {1}".format( self.server, self.port )
+        print "-" * 80
+        return self
+
+    def __exit__(self, type, value, traceback):
+        """."""
+        print "-" * 80
+        print "MongoDB Client have been Closed"
+        print "-" * 80
+
+        self.client.close()
+
+    def store(self, data, count=0):
+        """."""
+        db = self.client.test
+
+        hash_ = "%032x" % random.getrandbits(128)
+
+        if hash_ in db.collection_names():
+            if count >= 3:
+                _err_msg = "Tried Creating the unique collection ID {0} times".format( count - 1 )
+                raise Exception(_err_msg.format( count - 1 ))
+
+            count += 1
+            self.store( data, count )
+
+        collection = db.create_collection( hash_ )
+
+        return collection.save( data ), hash_
+
+    def retrive_one(self, obj_id=None, collection_id=None):
+        """."""
+        if obj_id is None:
+            raise Exception("Expecting valid Mongo Obj_ID, Got None")
+
+        if collection_id is None:
+            raise Exception("Expecting Collection_id, Got None")
+
+        db = self.client.test
+        return db[collection_id].find_one()
+
+    def retrive_all(self, obj_id=None, collection_id=None):
+        """."""
+        if obj_id is None:
+            raise Exception("Expecting valid Mongo Obj_ID, Got None")
+
+        if collection_id is None:
+            raise Exception("Expecting Collection_id, Got None")
+
+        db = self.client.test
+        return db[collection_id].find()
+
+
+if __name__ == '__main__':
+    """."""
+
+    SEED_DATA = {'a':[
+        {
+            'decade': '1970s',
+            'artist': 'Debby Boone',
+            'song': 'You Light Up My Life',
+            'weeksAtOne': 10
+        },
+        {
+            'decade': '1980s',
+            'artist': 'Olivia Newton-John',
+            'song': 'Physical',
+            'weeksAtOne': 10
+        },
+        {
+            'decade': '1990s',
+            'artist': 'Mariah Carey',
+            'song': 'One Sweet Day',
+            'weeksAtOne': 16
+        }
+    ]}
+
+    with Mongo(server='localhost', port=27017) as mongo:
+        obj_key, collection_id = mongo.store( SEED_DATA )
+
+    print obj_key, collection_id
+
+    with Mongo(server='localhost', port=27017) as mongo:
+        _data = mongo.retrive_one( obj_key, collection_id )
+
+    print _data
+    ## import pdb; pdb.set_trace()  # BREAKPOINT
+
+    ## for ele in _data:
+    ##     print ele
